@@ -46,7 +46,7 @@ class Part2Spec extends AnyFlatSpec with should.Matchers {
     Part2.result(sample) shouldBe sampleResult
   }
 
-  val inputResult = 53293
+  val inputResult = 53312
 
   "My input" should s"have result $inputResult" in {
     Part2.result(Day01.myList()) shouldBe inputResult

@@ -23,22 +23,20 @@ object Part1 extends App {
 
 object Part2 extends App {
 
-  private def rec(string: String): String = string match {
-    case "" => ""
-    case s if s.startsWith("one") => "1" + rec(s.substring(3))
-    case s if s.startsWith("two") => "2" + rec(s.substring(3))
-    case s if s.startsWith("three") => "3" + rec(s.substring(5))
-    case s if s.startsWith("four") => "4" + rec(s.substring(4))
-    case s if s.startsWith("five") => "5" + rec(s.substring(4))
-    case s if s.startsWith("six") => "6" + rec(s.substring(3))
-    case s if s.startsWith("seven") => "7" + rec(s.substring(5))
-    case s if s.startsWith("eight") => "8" + rec(s.substring(5))
-    case s if s.startsWith("nine") => "9" + rec(s.substring(4))
-    case s => s.take(1) + rec(s.drop(1))
+  def result(list: List[String]): Int = {
+    val newList = list.map(_
+      .replace("one", "one1one")
+      .replace("two", "two2two")
+      .replace("three", "three3three")
+      .replace("four", "four4four")
+      .replace("five", "five5five")
+      .replace("six", "six6six")
+      .replace("seven", "seven7seven")
+      .replace("eight", "eight8eight")
+      .replace("nine", "nine9nine")
+    )
+    Part1.result(newList)
   }
-
-  def result(list: List[String]): Int =
-    Part1.result(list.map(rec))
 
   println(result(Day01.myList()))
 }
