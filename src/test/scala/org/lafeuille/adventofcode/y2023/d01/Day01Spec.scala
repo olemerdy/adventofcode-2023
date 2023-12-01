@@ -1,6 +1,5 @@
 package org.lafeuille.adventofcode.y2023.d01
 
-
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.*
 
