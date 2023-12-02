@@ -4,7 +4,7 @@ import scala.io.Source
 
 object Day01 {
   private def myInput: Source =
-    Source.fromURL(getClass.getResource("input.txt"))
+    Source.fromURL(getClass.getResource("input01.txt"))
 
   def myList(): List[String] =
     myInput.getLines().toList
