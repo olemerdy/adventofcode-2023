@@ -1,17 +1,29 @@
 package org.lafeuille.adventofcode.y2023.d02
 
 import scala.io.Source
+import scala.math.max
 
 case class Draw(redCubes: Int = 0, greenCubes: Int = 0, blueCubes: Int = 0)
 
-case class Game(id: Int, draws: List[Draw])
+case class Game(id: Int, draws: List[Draw]) {
+  def minimalBag: Bag = draws.foldLeft(Bag()) { (bag, draw) =>
+    bag.copy(
+      redCubes = max(bag.redCubes, draw.redCubes),
+      greenCubes = max(bag.greenCubes, draw.greenCubes),
+      blueCubes = max(bag.blueCubes, draw.blueCubes)
+    )
+  }
+}
 
-case class Bag(redCubes: Int = 12, greenCubes: Int = 13, blueCubes: Int = 14) {
+case class Bag(redCubes: Int = 0, greenCubes: Int = 0, blueCubes: Int = 0) {
   private def isPossible(draw: Draw): Boolean =
     redCubes >= draw.redCubes && greenCubes >= draw.greenCubes && blueCubes >= draw.blueCubes
 
   def isPossible(game: Game): Boolean =
     game.draws.forall(isPossible)
+
+  def power: Int =
+    redCubes * greenCubes * blueCubes
 }
 
 object Day02 {
@@ -54,7 +66,7 @@ object Day02 {
 
 object Part1 extends App {
 
-  private val bag = Bag()
+  private val bag = Bag(redCubes = 12, greenCubes = 13, blueCubes = 14)
 
   def result(games: List[Game]): Int = games
     .filter(bag.isPossible)
@@ -66,7 +78,10 @@ object Part1 extends App {
 
 object Part2 extends App {
 
-  def result(list: List[Game]): Int = ???
+  def result(games: List[Game]): Int = games
+    .map(_.minimalBag)
+    .map(_.power)
+    .sum
 
   println(result(Day02.myList()))
 }

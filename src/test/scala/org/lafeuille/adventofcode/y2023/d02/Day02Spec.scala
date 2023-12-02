@@ -7,13 +7,13 @@ val sample = Nil
 
 class Part1Spec extends AnyFlatSpec with should.Matchers {
 
-  val sampleResult = 0
+  val sampleResult = 8
 
   "Sample example" should s"have result $sampleResult" in {
     Part1.result(sample) shouldBe sampleResult
   }
 
-  val inputResult = 0
+  val inputResult = 2679
 
   "My input" should s"have result $inputResult" in {
     Part1.result(Day02.myList()) shouldBe inputResult
